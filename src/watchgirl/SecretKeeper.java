@@ -1,4 +1,4 @@
-package kata;
+package watchgirl;
 
 public class SecretKeeper {
 

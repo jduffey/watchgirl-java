@@ -1,20 +1,13 @@
-package kata;
+package watchgirl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.mockito.Mockito.when;
-
-import static org.mockito.Mockito.mock;
 
 class SignalComparerTest {
 
-//    private final SignalMaker signalMaker = mock(SignalMaker.class);
-//    private final String SIGNAL_OUTPUT = "SIGNAL_OUTPUT";
     private SignalComparer signalComparer;
 
     @BeforeEach

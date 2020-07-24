@@ -1,4 +1,4 @@
-package kata;
+package watchgirl;
 
 import java.time.Instant;
 
