@@ -4,9 +4,9 @@ import java.util.UUID;
 
 public class PhotoData {
 
-    private UUID cameraId;
-    private String time;
-    private SignalOutput signal;
+    private final UUID cameraId;
+    private final String time;
+    private final SignalOutput signal;
 
     public PhotoData(UUID cameraId, String time, SignalOutput signal) {
         this.cameraId = cameraId;

@@ -19,7 +19,7 @@ public class WatchgirlIntegrationTest {
         SecretKeeper secretKeeper = new SecretKeeper("my secret");
         CustomHasher customHasher = new CustomHasher();
         signalMaker = new SignalMaker(timeKeeper, secretKeeper, customHasher);
-        SignalComparer signalComparer = new SignalComparer();
+//        PhotoAnalyzer photoAnalyzer = new PhotoAnalyzer();
         camera = new Camera(timeKeeper);
 
         when(timeKeeper.getCurrentUnixTime()).thenReturn(CURRENT_TIME);
