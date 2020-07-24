@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 public class TimeKeeperTest {
 
     @Test
-    public void getCurrentUnixTime() {
+    public void getCurrentUnixTime_returnsTimeAsString() {
         TimeKeeper underTest = new TimeKeeper();
 
-        String actual = underTest.getCurrentUnixTime();
-
-        Assertions.assertEquals(actual, "WHAT TO DO WITH THIS TEST?");
+        Assertions.assertEquals(
+                String.class,
+                underTest.getCurrentUnixTime().getClass());
     }
 }
