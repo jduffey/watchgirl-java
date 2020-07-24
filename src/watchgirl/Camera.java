@@ -5,20 +5,21 @@ import java.util.Map;
 
 public class Camera {
 
-    private final Map<Integer, SignalOutput> capturedPhotos = new HashMap<>();
+    private final Map<String, SignalOutput> capturedPhotos = new HashMap<>();
+    private final TimeKeeper timeKeeper;
+
+    public Camera(TimeKeeper timeKeeper) {
+        this.timeKeeper = timeKeeper;
+    }
     
-    public void takePhoto(int time, SignalOutput receivedSignalOutput) {
-//        int time = getTime();
+    public void takePhoto(SignalOutput receivedSignalOutput) {
+        String time = timeKeeper.getCurrentUnixTime();
         System.out.println(
-                String.format("[Taking photo] Time: %d, Signal: %s", time, receivedSignalOutput.toString()));
+                String.format("[Taking photo] Time: %s, Signal: %s", time, receivedSignalOutput.toString()));
         capturedPhotos.put(time, receivedSignalOutput);
     }
 
-//    private int getTime() {
-//        return -999;
-//    }
-
-    public SignalOutput getReceivedSignalOutput(int time) {
+    public SignalOutput getReceivedSignalOutput(String time) {
         return capturedPhotos.get(time);
     }
 }
