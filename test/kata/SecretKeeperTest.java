@@ -8,7 +8,7 @@ class SecretKeeperTest {
     @Test
     void getAndSetSecret() {
         String secret = "SECRET";
-        SecretKeeper underTest = new SecretKeeper();
+        SecretKeeper underTest = new SecretKeeper(secret);
 
         Assertions.assertEquals(
                 secret,
