@@ -1,12 +1,12 @@
 package watchgirl;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Camera {
 
-    private final Map<String, SignalOutput> capturedPhotos = new HashMap<>();
+    List<PhotoData> capturedPhotos = new ArrayList<>();
     private final TimeKeeper timeKeeper;
+    private final UUID cameraId = UUID.randomUUID();
 
     public Camera(TimeKeeper timeKeeper) {
         this.timeKeeper = timeKeeper;
@@ -14,12 +14,11 @@ public class Camera {
     
     public void takePhoto(SignalOutput receivedSignalOutput) {
         String time = timeKeeper.getCurrentUnixTime();
-        System.out.println(
-                String.format("[Taking photo] Time: %s, Signal: %s", time, receivedSignalOutput.toString()));
-        capturedPhotos.put(time, receivedSignalOutput);
+        PhotoData photoData = new PhotoData(cameraId, time, receivedSignalOutput);
+        capturedPhotos.add(photoData);
     }
 
-    public SignalOutput getReceivedSignalOutput(String time) {
-        return capturedPhotos.get(time);
+    public List<PhotoData> getStoredPhotos() {
+        return capturedPhotos;
     }
 }
