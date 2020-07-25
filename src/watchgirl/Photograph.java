@@ -2,13 +2,13 @@ package watchgirl;
 
 import java.util.UUID;
 
-public class PhotoData {
+public class Photograph {
 
     private final UUID cameraId;
     private final String time;
     private final SignalOutput signal;
 
-    public PhotoData(UUID cameraId, String time, SignalOutput signal) {
+    public Photograph(UUID cameraId, String time, SignalOutput signal) {
         this.cameraId = cameraId;
         this.time = time;
         this.signal = signal;

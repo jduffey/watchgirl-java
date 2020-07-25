@@ -4,21 +4,26 @@ import java.util.*;
 
 public class Camera {
 
-    List<PhotoData> capturedPhotos = new ArrayList<>();
+    List<Photograph> capturedPhotos = new ArrayList<>();
     private final TimeKeeper timeKeeper;
-    private final UUID cameraId = UUID.randomUUID();
+    private final UUID cameraId;
 
-    public Camera(TimeKeeper timeKeeper) {
+    public Camera(UUID cameraId, TimeKeeper timeKeeper) {
+        this.cameraId = cameraId;
         this.timeKeeper = timeKeeper;
     }
     
     public void takePhoto(SignalOutput receivedSignalOutput) {
         String time = timeKeeper.getCurrentUnixTime();
-        PhotoData photoData = new PhotoData(cameraId, time, receivedSignalOutput);
-        capturedPhotos.add(photoData);
+        Photograph photograph = new Photograph(cameraId, time, receivedSignalOutput);
+        capturedPhotos.add(photograph);
     }
 
-    public List<PhotoData> getStoredPhotos() {
+    public List<Photograph> getStoredPhotos() {
         return capturedPhotos;
+    }
+
+    public UUID getCameraId() {
+        return cameraId;
     }
 }

@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-class PhotoDataTest {
+class PhotographTest {
 
     private static final UUID CAMERA_ID = UUID.randomUUID();
     private static final String TIME = "TIME";
     private static final SignalOutput SIGNAL = SignalOutput.RED;
-    private PhotoData underTest;
+    private Photograph underTest;
 
     @BeforeEach
     void setup() {
-        underTest = new PhotoData(CAMERA_ID, TIME, SIGNAL);
+        underTest = new Photograph(CAMERA_ID, TIME, SIGNAL);
     }
 
     @Test
