@@ -3,46 +3,42 @@ package watchgirl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+
+import java.util.UUID;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class PhotoAnalyzerTest {
 
-    private PhotoAnalyzer photoAnalyzer;
+    private PhotoAnalyzer underTest;
+    private final Photograph photograph = mock(Photograph.class);
+    private final HmacGenerator hmacGenerator = mock(HmacGenerator.class);
+    private final SecretKeeper secretKeeper = mock(SecretKeeper.class);
 
     @BeforeEach
     void setup() {
-        photoAnalyzer = new PhotoAnalyzer();
+        underTest = new PhotoAnalyzer(hmacGenerator, secretKeeper);
     }
-
-    /*
-    TODO: rework this. PhotoAnalyzer should:
-    1. Read cameraID from photo
-    2. Query SecretKeeper to get associated secret
-    3. Read time from photo
-    4. Generate hash from photo time and associated secret
-    5. Calculate signal and compare it to signal in photo
-    5a. "calculate signal" should be moved to its own class, out of SignalMaker
-    5b. rename SignalMaker to SignalGenerator?
-     */
 
     @Test
-    void compareSignal_givenExpectedSignal_returnsTrue() {
-        SignalOutput receivedSignal = SignalOutput.RED;
+    void getExpectedSignal_givenPhotograph_returnsExpectedSignal() throws Exception {
+        UUID cameraId = UUID.randomUUID();
+        String time = "TIME";
+        String secret = "SECRET";
         SignalOutput expectedSignal = SignalOutput.RED;
 
-        boolean actual = photoAnalyzer.compareSignal(receivedSignal, expectedSignal);
+        when(photograph.getCameraId()).thenReturn(cameraId);
+        when(photograph.getTime()).thenReturn(time);
+        when(photograph.getSignal()).thenReturn(expectedSignal);
 
-        Assertions.assertTrue(actual);
-    }
+        when(secretKeeper.getSecret(cameraId)).thenReturn(secret);
 
-    @ParameterizedTest
-    @EnumSource(value = SignalOutput.class, names = {"GREEN", "BLUE", "WHITE"})
-    void compareSignal_givenUnexpectedSignal_returnsFalse(SignalOutput receivedSignal) {
-        SignalOutput expectedSignal = SignalOutput.RED;
+        when(hmacGenerator.generateHmac(time, secret))
+                .thenReturn("0000000000000000000000000000000000000000000000000000000000000000");
 
-        boolean actual = photoAnalyzer.compareSignal(receivedSignal, expectedSignal);
+        SignalOutput actual = underTest.getExpectedSignal(photograph);
 
-        Assertions.assertFalse(actual);
+        Assertions.assertEquals(SignalOutput.RED, actual);
     }
 }

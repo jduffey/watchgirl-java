@@ -13,9 +13,9 @@ public class SignalMakerDevice {
     }
 
     public SignalOutput generateSignal() throws Exception {
-        String digest = getDigest();
+        String hmac = getHmac();
 
-        int lastDigitMod4 = getLastDigitMod4(digest);
+        int lastDigitMod4 = getLastDigitMod4(hmac);
 
         return switch (lastDigitMod4) {
             case 0 -> SignalOutput.RED;
@@ -26,16 +26,16 @@ public class SignalMakerDevice {
         };
     }
 
-    private String getDigest() throws Exception {
+    private String getHmac() throws Exception {
         String currentTime = timeKeeper.getCurrentUnixTime();
 
         return hmacGenerator.generateHmac(currentTime, secret);
     }
 
-    private int getLastDigitMod4(String digest) {
+    private int getLastDigitMod4(String string) {
         int lastIndexOfSha256Digest = 63;
         int hexRadix = 16;
-        String lastDigit = digest.substring(lastIndexOfSha256Digest);
+        String lastDigit = string.substring(lastIndexOfSha256Digest);
         int lastDigitAsInt = Integer.parseInt(lastDigit, hexRadix);
 
         return lastDigitAsInt % 4;
