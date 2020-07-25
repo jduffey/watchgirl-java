@@ -22,8 +22,4 @@ public class Camera {
     public List<Photograph> getStoredPhotos() {
         return capturedPhotos;
     }
-
-    public UUID getCameraId() {
-        return cameraId;
-    }
 }
