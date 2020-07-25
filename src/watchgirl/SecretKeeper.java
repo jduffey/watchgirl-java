@@ -1,14 +1,27 @@
 package watchgirl;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class SecretKeeper {
 
-    private final String secret;
+    private static SecretKeeper secretKeeper;
+    private final HashMap<UUID, String> uuidSecrets = new HashMap<>();
 
-    public SecretKeeper(String secret) {
-        this.secret = secret;
+    private SecretKeeper() {    }
+
+    public static SecretKeeper getInstance() {
+        if (secretKeeper == null) {
+            secretKeeper = new SecretKeeper();
+        }
+        return secretKeeper;
     }
 
-    public String getSecret() {
-        return secret;
+    public void registerCameraSecret(UUID cameraId, String secret) {
+        uuidSecrets.put(cameraId, secret);
+    }
+
+    public String getSecret(UUID cameraId) {
+        return uuidSecrets.get(cameraId);
     }
 }
