@@ -10,9 +10,15 @@ import static org.mockito.Mockito.*;
 public class EquipmentProvisionerTest {
 
     @Test
-    void provisionCameraAndSignalMakerPair() {
-        EntropyTools entropyTools = new EntropyTools();
+    void createCameraSignalMakerPair() {
+        UUID cameraUuid = UUID.randomUUID();
+        String secret = "SECRET";
+
+        EntropyTools entropyTools = mock(EntropyTools.class);
         SecretKeeper secretKeeper = mock(SecretKeeper.class);
+        when(entropyTools.generateUuid()).thenReturn(cameraUuid);
+        when(entropyTools.generateSecretKey()).thenReturn(secret);
+
         EquipmentProvisioner underTest = new EquipmentProvisioner(entropyTools, secretKeeper);
 
         CameraSignalMakerPair actual = underTest.createCameraSignalMakerPair();
@@ -22,7 +28,7 @@ public class EquipmentProvisionerTest {
 
         Assertions.assertNotNull(camera);
         Assertions.assertNotNull(signalMaker);
-        verify(secretKeeper).registerCameraSecret(any(UUID.class), anyString());
+        verify(secretKeeper).registerCameraSecret(eq(cameraUuid), eq(secret));
         verifyNoMoreInteractions(secretKeeper);
     }
 }
