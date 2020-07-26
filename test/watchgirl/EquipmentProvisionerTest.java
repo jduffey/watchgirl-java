@@ -3,7 +3,6 @@ package watchgirl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.Matchers.any;
@@ -14,14 +13,14 @@ public class EquipmentProvisionerTest {
 
     @Test
     void provisionCameraAndSignalMakerPair() {
-        SecretKeeper secretKeeper = mock(SecretKeeper.class);
         EntropyTools entropyTools = new EntropyTools();
+        SecretKeeper secretKeeper = mock(SecretKeeper.class);
         EquipmentProvisioner underTest = new EquipmentProvisioner(entropyTools, secretKeeper);
 
-        List<Object> actual = underTest.createCameraSignalMakerPair();
+        CameraSignalMakerDevicePair actual = underTest.createCameraSignalMakerPair();
 
-        Camera camera = (Camera) actual.get(0);
-        SignalMakerDevice signalMakerDevice = (SignalMakerDevice) actual.get(1);
+        Camera camera = actual.getCamera();
+        SignalMakerDevice signalMakerDevice = actual.getSignalMakerDevice();
 
         Assertions.assertNotNull(camera);
         Assertions.assertNotNull(signalMakerDevice);

@@ -14,7 +14,7 @@ public class EquipmentProvisioner {
         this.secretKeeper = secretKeeper;
     }
 
-    public List<Object> createCameraSignalMakerPair() {
+    public CameraSignalMakerDevicePair createCameraSignalMakerPair() {
         UUID cameraId = entropyTools.generateUuid();
         String secret = entropyTools.generateSecretKey();
 
@@ -25,10 +25,6 @@ public class EquipmentProvisioner {
         SignalMakerDevice signalMakerDevice =
                 new SignalMakerDevice(new TimeKeeper(), secret, new HmacGenerator());
 
-        List<Object> cameraAndSignalMaker = new LinkedList<>();
-        cameraAndSignalMaker.add(camera);
-        cameraAndSignalMaker.add(signalMakerDevice);
-
-        return cameraAndSignalMaker;
+        return new CameraSignalMakerDevicePair(camera, signalMakerDevice);
     }
 }
