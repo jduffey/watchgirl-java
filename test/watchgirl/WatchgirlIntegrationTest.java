@@ -14,10 +14,10 @@ public class WatchgirlIntegrationTest {
         EquipmentProvisioner equipmentProvisioner = new EquipmentProvisioner(entropyTools, secretKeeper);
         PhotoAnalyzer photoAnalyzer = new PhotoAnalyzer(new HmacGenerator(), secretKeeper);
 
-        CameraSignalMakerDevicePair cameraSignalMakerDevicePair = equipmentProvisioner.createCameraSignalMakerPair();
+        CameraSignalMakerPair cameraSignalMakerPair = equipmentProvisioner.createCameraSignalMakerPair();
 
-        Camera camera = cameraSignalMakerDevicePair.getCamera();
-        SignalMaker signalMaker = cameraSignalMakerDevicePair.getSignalMaker();
+        Camera camera = cameraSignalMakerPair.getCamera();
+        SignalMaker signalMaker = cameraSignalMakerPair.getSignalMaker();
 
         SignalOutput signalOutput = signalMaker.generateSignal();
         camera.takePhoto(signalOutput);

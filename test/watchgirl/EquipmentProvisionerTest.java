@@ -17,7 +17,7 @@ public class EquipmentProvisionerTest {
         SecretKeeper secretKeeper = mock(SecretKeeper.class);
         EquipmentProvisioner underTest = new EquipmentProvisioner(entropyTools, secretKeeper);
 
-        CameraSignalMakerDevicePair actual = underTest.createCameraSignalMakerPair();
+        CameraSignalMakerPair actual = underTest.createCameraSignalMakerPair();
 
         Camera camera = actual.getCamera();
         SignalMaker signalMaker = actual.getSignalMaker();

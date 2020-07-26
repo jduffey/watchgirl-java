@@ -16,7 +16,7 @@ public class CameraSignalMakerPairTest {
         Camera camera = new Camera(uuid, timeKeeper);
         SignalMaker signalMaker = new SignalMaker(timeKeeper, secret, hmacGenerator);
 
-        CameraSignalMakerDevicePair actual = new CameraSignalMakerDevicePair(camera, signalMaker);
+        CameraSignalMakerPair actual = new CameraSignalMakerPair(camera, signalMaker);
 
         Assertions.assertSame(camera, actual.getCamera());
         Assertions.assertSame(signalMaker, actual.getSignalMaker());

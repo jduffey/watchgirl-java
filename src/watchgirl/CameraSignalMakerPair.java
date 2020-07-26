@@ -1,11 +1,11 @@
 package watchgirl;
 
-public class CameraSignalMakerDevicePair {
+public class CameraSignalMakerPair {
 
     private final Camera camera;
     private final SignalMaker signalMaker;
 
-    public CameraSignalMakerDevicePair(Camera camera, SignalMaker signalMaker) {
+    public CameraSignalMakerPair(Camera camera, SignalMaker signalMaker) {
         this.camera = camera;
         this.signalMaker = signalMaker;
     }
