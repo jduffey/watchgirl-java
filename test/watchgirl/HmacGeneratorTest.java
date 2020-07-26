@@ -11,9 +11,6 @@ public class HmacGeneratorTest {
 
         String actual = underTest.generateHmac("MESSAGE", "KEY");
 
-        Assertions.assertTrue(
-                actual.matches("(?i)[A-F0-9]{64}"),
-                actual
-        );
+        Assertions.assertTrue(actual.matches("(?i)[A-F0-9]{64}"));
     }
 }
