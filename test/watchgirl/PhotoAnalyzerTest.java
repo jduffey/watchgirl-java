@@ -39,6 +39,6 @@ class PhotoAnalyzerTest {
 
         SignalOutput actual = underTest.getExpectedSignal(photograph);
 
-        Assertions.assertEquals(SignalOutput.RED, actual);
+        Assertions.assertEquals(expectedSignal, actual);
     }
 }
