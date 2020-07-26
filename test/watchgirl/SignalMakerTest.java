@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 public class SignalMakerTest {
 
     private static final String DIGEST_FIRST_63_DIGITS =
-            "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4";
+            "000000000000000000000000000000000000000000000000000000000000000";
     private static final String CURRENT_TIME = "CURRENT_TIME";
     private static final String SECRET = "SECRET";
     private final TimeKeeper timeKeeper = mock(TimeKeeper.class);
