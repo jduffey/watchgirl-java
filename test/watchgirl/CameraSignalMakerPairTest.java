@@ -1,24 +1,36 @@
 package watchgirl;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
 public class CameraSignalMakerPairTest {
 
-    @Test
-    void getters() {
+    private Camera camera;
+    private SignalMaker signalMaker;
+    private CameraSignalMakerPair cameraSignalMakerPair;
+
+    @BeforeEach
+    void setup() {
         UUID uuid = UUID.randomUUID();
         String secret = "SECRET";
         TimeKeeper timeKeeper = new TimeKeeper();
         HmacGenerator hmacGenerator = new HmacGenerator();
-        Camera camera = new Camera(uuid, timeKeeper);
-        SignalMaker signalMaker = new SignalMaker(timeKeeper, secret, hmacGenerator);
 
-        CameraSignalMakerPair actual = new CameraSignalMakerPair(camera, signalMaker);
+        camera = new Camera(uuid, timeKeeper);
+        signalMaker = new SignalMaker(timeKeeper, secret, hmacGenerator);
+        cameraSignalMakerPair = new CameraSignalMakerPair(camera, signalMaker);
+    }
 
-        Assertions.assertSame(camera, actual.getCamera());
-        Assertions.assertSame(signalMaker, actual.getSignalMaker());
+    @Test
+    void getCamera() {
+        Assertions.assertSame(camera, cameraSignalMakerPair.getCamera());
+    }
+
+    @Test
+    void getSignalMaker() {
+        Assertions.assertSame(signalMaker, cameraSignalMakerPair.getSignalMaker());
     }
 }
