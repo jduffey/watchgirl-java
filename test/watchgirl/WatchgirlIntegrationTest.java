@@ -1,13 +1,17 @@
 package watchgirl;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class WatchgirlIntegrationTest {
 
-    @Test
+    private Photograph photo;
+    private AnalyzedPhotograph analyzedPhoto;
+
+    @BeforeEach
     void e2e_soFar() throws Exception {
         EntropyTools entropyTools = new EntropyTools();
         SecretKeeper secretKeeper = SecretKeeper.getInstance();
@@ -24,11 +28,19 @@ public class WatchgirlIntegrationTest {
 
         List<Photograph> photographs = camera.getStoredPhotos();
 
-        Photograph photo = photographs.stream().findFirst().orElse(null);
+        photo = photographs.stream().findFirst().orElse(null);
 
         assert photo != null;
-        SignalOutput expectedSignal = photoAnalyzer.getExpectedSignal(photo);
+        analyzedPhoto = photoAnalyzer.createAnalyzedPhotograph(photo);
+    }
 
-        Assertions.assertEquals(expectedSignal, signalOutput);
+    @Test
+    void capturedPhotograph_isSamePhotographInAnalyzedPhotograph() {
+        Assertions.assertEquals(photo, analyzedPhoto.getPhoto());
+    }
+
+    @Test
+    void analyzedPhotographStatusIsOk() {
+        Assertions.assertEquals(PhotographStatus.OK, analyzedPhoto.getStatus());
     }
 }

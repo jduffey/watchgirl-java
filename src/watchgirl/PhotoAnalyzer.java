@@ -12,7 +12,16 @@ public class PhotoAnalyzer {
         this.secretKeeper = secretKeeper;
     }
 
-    public SignalOutput getExpectedSignal(Photograph photo) throws Exception {
+    public AnalyzedPhotograph createAnalyzedPhotograph(Photograph photograph) throws Exception {
+        PhotographStatus status =
+                getExpectedSignal(photograph) == photograph.getSignal()
+                ? PhotographStatus.OK
+                : PhotographStatus.BAD;
+
+        return new AnalyzedPhotograph(photograph, status);
+    }
+
+    private SignalOutput getExpectedSignal(Photograph photo) throws Exception {
         UUID cameraID = photo.getCameraId();
         String time = photo.getTime();
         String secret = secretKeeper.getSecret(cameraID);

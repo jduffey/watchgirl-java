@@ -9,8 +9,8 @@ import java.util.UUID;
 public class AnalyzedPhotographTest {
 
     private AnalyzedPhotograph underTest;
-    private PhotographStatus expectedStatus;
-    private Photograph photograph;
+    private Photograph photo;
+    private PhotographStatus status;
 
     @BeforeEach
     void setup() {
@@ -18,19 +18,19 @@ public class AnalyzedPhotographTest {
         UUID photoId = UUID.randomUUID();
         String time = "TIME";
         SignalOutput signal = SignalOutput.RED;
-        photograph = new Photograph(cameraId, photoId, time, signal);
-        expectedStatus = PhotographStatus.OK;
+        photo = new Photograph(cameraId, photoId, time, signal);
+        status = PhotographStatus.OK;
 
-        underTest = new AnalyzedPhotograph(photograph, expectedStatus);
-    }
-
-    @Test
-    void getStatus() {
-        Assertions.assertEquals(expectedStatus, underTest.getStatus());
+        underTest = new AnalyzedPhotograph(photo, status);
     }
 
     @Test
     void getPhotograph() {
-        Assertions.assertSame(photograph, underTest.getPhoto());
+        Assertions.assertSame(photo, underTest.getPhoto());
+    }
+
+    @Test
+    void getStatus() {
+        Assertions.assertEquals(status, underTest.getStatus());
     }
 }

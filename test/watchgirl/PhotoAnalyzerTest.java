@@ -11,34 +11,45 @@ import static org.mockito.Mockito.when;
 
 class PhotoAnalyzerTest {
 
-    private final HmacGenerator hmacGenerator = mock(HmacGenerator.class);
-    private final Photograph photograph = mock(Photograph.class);
-    private final SecretKeeper secretKeeper = mock(SecretKeeper.class);
+    private static final SignalOutput EXPECTED_SIGNAL = SignalOutput.RED;
+    private static final String TIME = "TIME";
+    private static final String SECRET = "SECRET";
+    private static final HmacGenerator hmacGenerator = mock(HmacGenerator.class);
+    private static final Photograph photograph = mock(Photograph.class);
+    private static final SecretKeeper secretKeeper = mock(SecretKeeper.class);
+    private static final String HMAC_FIRST_63_DIGITS =
+            "000000000000000000000000000000000000000000000000000000000000000";
     private PhotoAnalyzer underTest;
 
     @BeforeEach
     void setup() {
         underTest = new PhotoAnalyzer(hmacGenerator, secretKeeper);
+        UUID cameraId = UUID.randomUUID();
+
+        when(photograph.getCameraId()).thenReturn(cameraId);
+        when(photograph.getTime()).thenReturn(TIME);
+        when(photograph.getSignal()).thenReturn(EXPECTED_SIGNAL);
+
+        when(secretKeeper.getSecret(cameraId)).thenReturn(SECRET);
     }
 
     @Test
-    void getExpectedSignal_givenPhotograph_returnsExpectedSignal() throws Exception {
-        UUID cameraId = UUID.randomUUID();
-        String time = "TIME";
-        String secret = "SECRET";
-        SignalOutput expectedSignal = SignalOutput.RED;
+    void createAnalyzedPhotograph_statusOk() throws Exception {
+        when(hmacGenerator.generateHmac(TIME, SECRET))
+                .thenReturn(HMAC_FIRST_63_DIGITS + "0");
 
-        when(photograph.getCameraId()).thenReturn(cameraId);
-        when(photograph.getTime()).thenReturn(time);
-        when(photograph.getSignal()).thenReturn(expectedSignal);
+        AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        when(secretKeeper.getSecret(cameraId)).thenReturn(secret);
+        Assertions.assertEquals(PhotographStatus.OK, actual.getStatus());
+    }
 
-        when(hmacGenerator.generateHmac(time, secret))
-                .thenReturn("0000000000000000000000000000000000000000000000000000000000000000");
+    @Test
+    void createAnalyzedPhotograph_statusBad() throws Exception {
+        when(hmacGenerator.generateHmac(TIME, SECRET))
+                .thenReturn(HMAC_FIRST_63_DIGITS + "1");
 
-        SignalOutput actual = underTest.getExpectedSignal(photograph);
+        AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(expectedSignal, actual);
+        Assertions.assertEquals(PhotographStatus.BAD, actual.getStatus());
     }
 }
