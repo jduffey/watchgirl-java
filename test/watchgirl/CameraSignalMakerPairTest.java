@@ -9,8 +9,8 @@ import java.util.UUID;
 public class CameraSignalMakerPairTest {
 
     private Camera camera;
-    private SignalMaker signalMaker;
     private CameraSignalMakerPair cameraSignalMakerPair;
+    private SignalMaker signalMaker;
 
     @BeforeEach
     void setup() {
@@ -18,8 +18,9 @@ public class CameraSignalMakerPairTest {
         String secret = "SECRET";
         TimeKeeper timeKeeper = new TimeKeeper();
         HmacGenerator hmacGenerator = new HmacGenerator();
+        EntropyTools entropyTools = new EntropyTools();
 
-        camera = new Camera(uuid, timeKeeper);
+        camera = new Camera(uuid, timeKeeper, entropyTools);
         signalMaker = new SignalMaker(timeKeeper, secret, hmacGenerator);
         cameraSignalMakerPair = new CameraSignalMakerPair(camera, signalMaker);
     }

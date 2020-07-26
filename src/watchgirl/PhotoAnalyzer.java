@@ -10,7 +10,7 @@ public class PhotoAnalyzer {
     public PhotoAnalyzer(HmacGenerator hmacGenerator, SecretKeeper secretKeeper){
         this.hmacGenerator = hmacGenerator;
         this.secretKeeper = secretKeeper;
-    };
+    }
 
     public SignalOutput getExpectedSignal(Photograph photo) throws Exception {
         UUID cameraID = photo.getCameraId();

@@ -11,10 +11,10 @@ import static org.mockito.Mockito.when;
 
 class PhotoAnalyzerTest {
 
-    private PhotoAnalyzer underTest;
-    private final Photograph photograph = mock(Photograph.class);
     private final HmacGenerator hmacGenerator = mock(HmacGenerator.class);
+    private final Photograph photograph = mock(Photograph.class);
     private final SecretKeeper secretKeeper = mock(SecretKeeper.class);
+    private PhotoAnalyzer underTest;
 
     @BeforeEach
     void setup() {

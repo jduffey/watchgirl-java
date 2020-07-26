@@ -26,7 +26,9 @@ public class Application {
         List<Photograph> photos = camera.getStoredPhotos();
 
         for (Photograph photo : photos) {
-            System.out.println(""+photo.getTime()+": "+photo.getSignal());
+            String logMessage = String.format(
+                    "Time: %s, Signal: %s, PhotoId: %s", photo.getTime(), photo.getSignal(), photo.getPhotoId());
+            System.out.println(logMessage);
         }
     }
 

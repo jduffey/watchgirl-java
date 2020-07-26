@@ -18,7 +18,7 @@ public class EquipmentProvisioner {
 
         secretKeeper.registerCameraSecret(cameraId, secret);
 
-        Camera camera = new Camera(cameraId, new TimeKeeper());
+        Camera camera = new Camera(cameraId, new TimeKeeper(), new EntropyTools());
         SignalMaker signalMaker = new SignalMaker(new TimeKeeper(), secret, new HmacGenerator());
 
         return new CameraSignalMakerPair(camera, signalMaker);

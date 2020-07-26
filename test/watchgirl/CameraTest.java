@@ -11,45 +11,46 @@ import static org.mockito.Mockito.*;
 
 public class CameraTest {
 
-    private static final String TIME = "TIME_0";
-    private final TimeKeeper timeKeeper = mock(TimeKeeper.class);
-    private Camera camera;
-    private UUID cameraId;
+    private static final String TIME = "TIME";
+    private static final UUID CAMERA_ID = UUID.randomUUID();
+    private static final UUID PHOTO_ID = UUID.randomUUID();
+    private static final SignalOutput SIGNAL_OUTPUT = SignalOutput.RED;
+
+    private static final EntropyTools entropyTools = mock(EntropyTools.class);
+    private static final TimeKeeper timeKeeper = mock(TimeKeeper.class);
+
+    private Photograph photo;
 
     @BeforeEach
     void setup() {
-        cameraId = UUID.randomUUID();
-        camera = new Camera(cameraId, timeKeeper);
+        Camera underTest = new Camera(CAMERA_ID, timeKeeper, entropyTools);
         when(timeKeeper.getCurrentUnixTime()).thenReturn(TIME);
-    }
+        when(entropyTools.generateUuid()).thenReturn(PHOTO_ID);
 
-    @Test
-    void takePhoto_storesTimeAndReceivedSignal() {
-        camera.takePhoto(SignalOutput.RED);
+        underTest.takePhoto(SIGNAL_OUTPUT);
 
-        List<Photograph> storedPhotos = camera.getStoredPhotos();
-
-        Assertions.assertEquals(SignalOutput.RED, getSignalOfPhoto(storedPhotos));
+        List<Photograph> photographs = underTest.getStoredPhotos();
+        photo = photographs.stream().findFirst().orElse(null);
+        assert photo != null;
     }
 
     @Test
     void takePhoto_storesCameraIdWithPhoto() {
-        camera.takePhoto(SignalOutput.RED);
-
-        List<Photograph> storedPhotos = camera.getStoredPhotos();
-
-        Photograph photo = storedPhotos.stream().findFirst().orElse(null);
-
-        assert photo != null;
-        Assertions.assertEquals(cameraId, photo.getCameraId());
+        Assertions.assertEquals(CAMERA_ID, photo.getCameraId());
     }
 
-    private SignalOutput getSignalOfPhoto(List<Photograph> storedPhotos) {
-        Photograph photograph = storedPhotos.stream()
-                .filter(p -> p.getTime().equals(TIME))
-                .findFirst()
-                .orElse(null);
+    @Test
+    void takePhoto_storesPhotoIdWithPhoto() {
+        Assertions.assertEquals(PHOTO_ID, photo.getPhotoId());
+    }
 
-        return null == photograph ? null : photograph.getSignal();
+    @Test
+    void takePhoto_storesTimeWithPhoto() {
+        Assertions.assertEquals(TIME, photo.getTime());
+    }
+
+    @Test
+    void takePhoto_storesReceivedSignalWithPhoto() {
+        Assertions.assertEquals(SIGNAL_OUTPUT, photo.getSignal());
     }
 }

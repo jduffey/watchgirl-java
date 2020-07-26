@@ -24,10 +24,10 @@ public class WatchgirlIntegrationTest {
 
         List<Photograph> photographs = camera.getStoredPhotos();
 
-        Photograph photograph = photographs.stream().findFirst().orElse(null);
+        Photograph photo = photographs.stream().findFirst().orElse(null);
 
-        assert photograph != null;
-        SignalOutput expectedSignal = photoAnalyzer.getExpectedSignal(photograph);
+        assert photo != null;
+        SignalOutput expectedSignal = photoAnalyzer.getExpectedSignal(photo);
 
         Assertions.assertEquals(expectedSignal, signalOutput);
     }
