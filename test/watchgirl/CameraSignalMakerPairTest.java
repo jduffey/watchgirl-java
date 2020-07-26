@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-public class CameraSignalMakerDevicePairTest {
+public class CameraSignalMakerPairTest {
 
     @Test
     void getters() {
@@ -14,11 +14,11 @@ public class CameraSignalMakerDevicePairTest {
         TimeKeeper timeKeeper = new TimeKeeper();
         HmacGenerator hmacGenerator = new HmacGenerator();
         Camera camera = new Camera(uuid, timeKeeper);
-        SignalMakerDevice signalMakerDevice = new SignalMakerDevice(timeKeeper, secret, hmacGenerator);
+        SignalMaker signalMaker = new SignalMaker(timeKeeper, secret, hmacGenerator);
 
-        CameraSignalMakerDevicePair actual = new CameraSignalMakerDevicePair(camera, signalMakerDevice);
+        CameraSignalMakerDevicePair actual = new CameraSignalMakerDevicePair(camera, signalMaker);
 
         Assertions.assertSame(camera, actual.getCamera());
-        Assertions.assertSame(signalMakerDevice, actual.getSignalMakerDevice());
+        Assertions.assertSame(signalMaker, actual.getSignalMaker());
     }
 }

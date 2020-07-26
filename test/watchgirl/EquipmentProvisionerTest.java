@@ -20,10 +20,10 @@ public class EquipmentProvisionerTest {
         CameraSignalMakerDevicePair actual = underTest.createCameraSignalMakerPair();
 
         Camera camera = actual.getCamera();
-        SignalMakerDevice signalMakerDevice = actual.getSignalMakerDevice();
+        SignalMaker signalMaker = actual.getSignalMaker();
 
         Assertions.assertNotNull(camera);
-        Assertions.assertNotNull(signalMakerDevice);
+        Assertions.assertNotNull(signalMaker);
         verify(secretKeeper).registerCameraSecret(any(UUID.class), anyString());
         verifyNoMoreInteractions(secretKeeper);
     }

@@ -19,8 +19,8 @@ public class EquipmentProvisioner {
         secretKeeper.registerCameraSecret(cameraId, secret);
 
         Camera camera = new Camera(cameraId, new TimeKeeper());
-        SignalMakerDevice signalMakerDevice = new SignalMakerDevice(new TimeKeeper(), secret, new HmacGenerator());
+        SignalMaker signalMaker = new SignalMaker(new TimeKeeper(), secret, new HmacGenerator());
 
-        return new CameraSignalMakerDevicePair(camera, signalMakerDevice);
+        return new CameraSignalMakerDevicePair(camera, signalMaker);
     }
 }

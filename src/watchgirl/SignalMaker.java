@@ -1,12 +1,12 @@
 package watchgirl;
 
-public class SignalMakerDevice {
+public class SignalMaker {
 
     private final TimeKeeper timeKeeper;
     private final String secret;
     private final HmacGenerator hmacGenerator;
 
-    public SignalMakerDevice(TimeKeeper timeKeeper, String secret, HmacGenerator hmacGenerator) {
+    public SignalMaker(TimeKeeper timeKeeper, String secret, HmacGenerator hmacGenerator) {
         this.timeKeeper = timeKeeper;
         this.secret = secret;
         this.hmacGenerator = hmacGenerator;

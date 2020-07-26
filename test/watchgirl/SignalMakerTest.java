@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class SignalMakerDeviceTest {
+public class SignalMakerTest {
 
     private static final String DIGEST_FIRST_63_DIGITS =
             "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4";
@@ -16,11 +16,11 @@ public class SignalMakerDeviceTest {
     private static final String SECRET = "SECRET";
     private final TimeKeeper timeKeeper = mock(TimeKeeper.class);
     private final HmacGenerator hmacGenerator = mock(HmacGenerator.class);
-    private SignalMakerDevice underTest;
+    private SignalMaker underTest;
 
     @BeforeEach
     void setup() {
-        underTest = new SignalMakerDevice(timeKeeper, SECRET, hmacGenerator);
+        underTest = new SignalMaker(timeKeeper, SECRET, hmacGenerator);
         when(timeKeeper.getCurrentUnixTime()).thenReturn(CURRENT_TIME);
     }
 

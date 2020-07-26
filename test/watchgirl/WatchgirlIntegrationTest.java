@@ -17,9 +17,9 @@ public class WatchgirlIntegrationTest {
         CameraSignalMakerDevicePair cameraSignalMakerDevicePair = equipmentProvisioner.createCameraSignalMakerPair();
 
         Camera camera = cameraSignalMakerDevicePair.getCamera();
-        SignalMakerDevice signalMakerDevice = cameraSignalMakerDevicePair.getSignalMakerDevice();
+        SignalMaker signalMaker = cameraSignalMakerDevicePair.getSignalMaker();
 
-        SignalOutput signalOutput = signalMakerDevice.generateSignal();
+        SignalOutput signalOutput = signalMaker.generateSignal();
         camera.takePhoto(signalOutput);
 
         List<Photograph> photographs = camera.getStoredPhotos();
