@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 public class EntropyToolsTest {
 
     private EntropyTools underTest;
@@ -15,10 +17,9 @@ public class EntropyToolsTest {
 
     @Test
     void generateUuid() {
-        String actual = underTest.generateUuid();
+        UUID actual = underTest.generateUuid();
 
-        String expectedRegex ="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}";
-        Assertions.assertTrue(actual.matches(expectedRegex));
+        Assertions.assertNotNull(actual);
     }
 
     @Test

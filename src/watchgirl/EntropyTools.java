@@ -5,8 +5,8 @@ import java.util.UUID;
 
 public class EntropyTools {
 
-    public String generateUuid() {
-        return UUID.randomUUID().toString();
+    public UUID generateUuid() {
+        return UUID.randomUUID();
     }
 
     public String generateSecretKey() {
