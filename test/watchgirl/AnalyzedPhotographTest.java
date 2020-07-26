@@ -8,29 +8,49 @@ import java.util.UUID;
 
 public class AnalyzedPhotographTest {
 
+    private static final UUID CAMERA_ID = UUID.randomUUID();
+    private static final UUID PHOTO_ID = UUID.randomUUID();
+    private static final SignalOutput SIGNAL = SignalOutput.RED;
+    private static final String TIME = "TIME";
     private AnalyzedPhotograph underTest;
-    private Photograph photo;
     private PhotographStatus status;
+    private Photograph photo;
 
     @BeforeEach
     void setup() {
-        UUID cameraId = UUID.randomUUID();
-        UUID photoId = UUID.randomUUID();
-        String time = "TIME";
-        SignalOutput signal = SignalOutput.RED;
-        photo = new Photograph(cameraId, photoId, time, signal);
+        photo = new Photograph(CAMERA_ID, PHOTO_ID, TIME, SIGNAL);
         status = PhotographStatus.OK;
 
         underTest = new AnalyzedPhotograph(photo, status);
     }
 
     @Test
-    void getPhotograph() {
-        Assertions.assertSame(photo, underTest.getPhoto());
+    void getPhoto() {
+        Assertions.assertEquals(photo, underTest.getPhoto());
     }
 
     @Test
     void getStatus() {
         Assertions.assertEquals(status, underTest.getStatus());
+    }
+
+    @Test
+    void getCameraId() {
+        Assertions.assertEquals(CAMERA_ID, underTest.getCameraId());
+    }
+
+    @Test
+    void getPhotoId() {
+        Assertions.assertEquals(PHOTO_ID, underTest.getPhotoId());
+    }
+
+    @Test
+    void getTime() {
+        Assertions.assertEquals(TIME, underTest.getTime());
+    }
+
+    @Test
+    void getSignal() {
+        Assertions.assertEquals(SIGNAL, underTest.getSignal());
     }
 }

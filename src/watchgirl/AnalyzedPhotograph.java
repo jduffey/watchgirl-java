@@ -1,5 +1,7 @@
 package watchgirl;
 
+import java.util.UUID;
+
 public class AnalyzedPhotograph {
 
     private final Photograph photograph;
@@ -14,7 +16,24 @@ public class AnalyzedPhotograph {
         return status;
     }
 
+    // Public for testing
     public Photograph getPhoto() {
         return photograph;
+    }
+
+    public UUID getPhotoId() {
+        return photograph.getPhotoId();
+    }
+
+    public String getTime() {
+        return photograph.getTime();
+    }
+
+    public UUID getCameraId() {
+        return photograph.getCameraId();
+    }
+
+    public SignalOutput getSignal() {
+        return photograph.getSignal();
     }
 }
