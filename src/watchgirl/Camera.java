@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Camera {
 
-    List<Photograph> capturedPhotos = new ArrayList<>();
+    private final List<Photograph> capturedPhotos = new ArrayList<>();
     private final TimeKeeper timeKeeper;
     private final UUID cameraId;
 

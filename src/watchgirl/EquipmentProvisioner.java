@@ -1,7 +1,5 @@
 package watchgirl;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 public class EquipmentProvisioner {
@@ -20,10 +18,8 @@ public class EquipmentProvisioner {
 
         secretKeeper.registerCameraSecret(cameraId, secret);
 
-        Camera camera =
-                new Camera(cameraId, new TimeKeeper());
-        SignalMakerDevice signalMakerDevice =
-                new SignalMakerDevice(new TimeKeeper(), secret, new HmacGenerator());
+        Camera camera = new Camera(cameraId, new TimeKeeper());
+        SignalMakerDevice signalMakerDevice = new SignalMakerDevice(new TimeKeeper(), secret, new HmacGenerator());
 
         return new CameraSignalMakerDevicePair(camera, signalMakerDevice);
     }
