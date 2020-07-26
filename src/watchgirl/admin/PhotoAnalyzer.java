@@ -1,4 +1,11 @@
-package watchgirl;
+package watchgirl.admin;
+
+import watchgirl.dataObjects.AnalyzedPhotograph;
+import watchgirl.dataObjects.Photograph;
+import watchgirl.dataObjects.PhotographStatus;
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.tools.HmacColorMapper;
+import watchgirl.tools.HmacGenerator;
 
 import java.util.UUID;
 

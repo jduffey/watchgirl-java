@@ -1,4 +1,4 @@
-package watchgirl;
+package watchgirl.tools;
 
 import java.time.Instant;
 

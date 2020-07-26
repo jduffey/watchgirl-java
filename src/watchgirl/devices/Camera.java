@@ -1,6 +1,13 @@
-package watchgirl;
+package watchgirl.devices;
 
-import java.util.*;
+import watchgirl.dataObjects.Photograph;
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.tools.EntropyTools;
+import watchgirl.tools.TimeKeeper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Camera {
 

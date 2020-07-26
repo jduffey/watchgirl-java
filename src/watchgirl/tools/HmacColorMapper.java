@@ -1,4 +1,6 @@
-package watchgirl;
+package watchgirl.tools;
+
+import watchgirl.dataObjects.SignalOutput;
 
 public class HmacColorMapper {
 

@@ -3,6 +3,14 @@ package watchgirl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import watchgirl.admin.EquipmentProvisioner;
+import watchgirl.admin.PhotoAnalyzer;
+import watchgirl.admin.SecretKeeper;
+import watchgirl.dataObjects.*;
+import watchgirl.devices.Camera;
+import watchgirl.devices.SignalMaker;
+import watchgirl.tools.EntropyTools;
+import watchgirl.tools.HmacGenerator;
 
 import java.util.List;
 

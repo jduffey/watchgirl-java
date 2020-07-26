@@ -1,4 +1,9 @@
-package watchgirl;
+package watchgirl.devices;
+
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.tools.HmacColorMapper;
+import watchgirl.tools.HmacGenerator;
+import watchgirl.tools.TimeKeeper;
 
 public class SignalMaker {
 

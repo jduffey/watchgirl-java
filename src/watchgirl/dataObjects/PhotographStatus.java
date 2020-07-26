@@ -1,4 +1,4 @@
-package watchgirl;
+package watchgirl.dataObjects;
 
 public enum PhotographStatus {
     OK,

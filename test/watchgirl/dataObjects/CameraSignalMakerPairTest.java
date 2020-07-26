@@ -1,8 +1,13 @@
-package watchgirl;
+package watchgirl.dataObjects;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import watchgirl.devices.Camera;
+import watchgirl.devices.SignalMaker;
+import watchgirl.tools.EntropyTools;
+import watchgirl.tools.HmacGenerator;
+import watchgirl.tools.TimeKeeper;
 
 import java.util.UUID;
 

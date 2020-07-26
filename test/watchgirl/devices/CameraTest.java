@@ -1,13 +1,18 @@
-package watchgirl;
+package watchgirl.devices;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import watchgirl.dataObjects.Photograph;
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.tools.EntropyTools;
+import watchgirl.tools.TimeKeeper;
 
 import java.util.List;
 import java.util.UUID;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CameraTest {
 

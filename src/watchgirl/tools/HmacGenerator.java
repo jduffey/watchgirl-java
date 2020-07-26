@@ -1,4 +1,4 @@
-package watchgirl;
+package watchgirl.tools;
 
 import org.apache.commons.codec.binary.Hex;
 

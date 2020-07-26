@@ -1,4 +1,11 @@
-package watchgirl;
+package watchgirl.admin;
+
+import watchgirl.devices.Camera;
+import watchgirl.devices.SignalMaker;
+import watchgirl.dataObjects.CameraSignalMakerPair;
+import watchgirl.tools.EntropyTools;
+import watchgirl.tools.HmacGenerator;
+import watchgirl.tools.TimeKeeper;
 
 import java.util.UUID;
 

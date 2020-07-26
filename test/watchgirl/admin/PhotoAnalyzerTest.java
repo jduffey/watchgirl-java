@@ -1,8 +1,13 @@
-package watchgirl;
+package watchgirl.admin;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import watchgirl.dataObjects.AnalyzedPhotograph;
+import watchgirl.dataObjects.Photograph;
+import watchgirl.dataObjects.PhotographStatus;
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.tools.HmacGenerator;
 
 import java.util.UUID;
 

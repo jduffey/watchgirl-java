@@ -1,9 +1,12 @@
-package watchgirl;
+package watchgirl.devices;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.tools.HmacGenerator;
+import watchgirl.tools.TimeKeeper;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

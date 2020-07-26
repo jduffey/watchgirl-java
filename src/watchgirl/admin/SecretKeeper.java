@@ -1,4 +1,4 @@
-package watchgirl;
+package watchgirl.admin;
 
 import java.util.HashMap;
 import java.util.UUID;

@@ -1,5 +1,18 @@
 package watchgirl;
 
+import watchgirl.admin.EquipmentProvisioner;
+import watchgirl.admin.PhotoAnalyzer;
+import watchgirl.admin.SecretKeeper;
+import watchgirl.dataObjects.AnalyzedPhotograph;
+import watchgirl.dataObjects.CameraSignalMakerPair;
+import watchgirl.dataObjects.Photograph;
+import watchgirl.dataObjects.SignalOutput;
+import watchgirl.devices.Camera;
+import watchgirl.devices.SignalMaker;
+import watchgirl.tools.EntropyTools;
+import watchgirl.tools.HmacGenerator;
+import watchgirl.tools.TimeKeeper;
+
 import java.util.List;
 
 public class Application {

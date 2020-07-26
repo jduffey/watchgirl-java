@@ -1,7 +1,11 @@
-package watchgirl;
+package watchgirl.admin;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import watchgirl.dataObjects.CameraSignalMakerPair;
+import watchgirl.devices.Camera;
+import watchgirl.devices.SignalMaker;
+import watchgirl.tools.EntropyTools;
 
 import java.util.UUID;
 

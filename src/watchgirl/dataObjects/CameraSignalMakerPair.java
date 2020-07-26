@@ -1,4 +1,7 @@
-package watchgirl;
+package watchgirl.dataObjects;
+
+import watchgirl.devices.Camera;
+import watchgirl.devices.SignalMaker;
 
 public class CameraSignalMakerPair {
 

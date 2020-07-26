@@ -1,4 +1,4 @@
-package watchgirl;
+package watchgirl.dataObjects;
 
 import java.util.UUID;
 
