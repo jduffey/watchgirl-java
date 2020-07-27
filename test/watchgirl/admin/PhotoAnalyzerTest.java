@@ -41,8 +41,7 @@ class PhotoAnalyzerTest {
 
     @Test
     void createAnalyzedPhotograph_statusOk() throws Exception {
-        when(hmacGenerator.generateHmac(TIME, SECRET))
-                .thenReturn(HMAC_FIRST_63_DIGITS + "0");
+        when(hmacGenerator.generateHmac(TIME, SECRET)).thenReturn(HMAC_FIRST_63_DIGITS + "0");
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
@@ -51,12 +50,22 @@ class PhotoAnalyzerTest {
 
     @Test
     void createAnalyzedPhotograph_statusBad() throws Exception {
-        when(hmacGenerator.generateHmac(TIME, SECRET))
-                .thenReturn(HMAC_FIRST_63_DIGITS + "1");
+        when(hmacGenerator.generateHmac(TIME, SECRET)).thenReturn(HMAC_FIRST_63_DIGITS + "1");
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
         Assertions.assertEquals(PhotographStatus.BAD, actual.getStatus());
+    }
+
+    @Test
+    void createAnalyzedPhotograph_whenPhotoSignalIsError_marksPhotoStatusAsSignalError() throws Exception {
+        String valid64DigitHmac = "0000000000000000000000000000000000000000000000000000000000000000";
+        when(hmacGenerator.generateHmac(TIME, SECRET)).thenReturn(valid64DigitHmac);
+        when(photograph.getSignal()).thenReturn(SignalOutput.SIGNAL_ERROR);
+
+        AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
+
+        Assertions.assertEquals(PhotographStatus.SIGNAL_ERROR, actual.getStatus());
     }
 
     @Test

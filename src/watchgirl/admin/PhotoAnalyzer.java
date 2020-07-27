@@ -20,6 +20,10 @@ public class PhotoAnalyzer {
     }
 
     public AnalyzedPhotograph createAnalyzedPhotograph(Photograph photograph) {
+        if (SignalOutput.SIGNAL_ERROR == photograph.getSignal()) {
+            return new AnalyzedPhotograph(photograph, PhotographStatus.SIGNAL_ERROR);
+        }
+
         try {
             PhotographStatus status =
                 getExpectedSignal(photograph) == photograph.getSignal()
