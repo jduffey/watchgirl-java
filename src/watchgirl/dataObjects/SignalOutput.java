@@ -5,5 +5,5 @@ public enum SignalOutput {
     GREEN,
     BLUE,
     WHITE,
-    SHOULD_NEVER_SEE_ME
+    SIGNAL_ERROR
 }

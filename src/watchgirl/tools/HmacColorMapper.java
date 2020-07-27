@@ -13,7 +13,7 @@ public class HmacColorMapper {
             case 1 -> SignalOutput.GREEN;
             case 2 -> SignalOutput.BLUE;
             case 3 -> SignalOutput.WHITE;
-            default -> SignalOutput.SHOULD_NEVER_SEE_ME;
+            default -> SignalOutput.SIGNAL_ERROR;
         };
     }
 

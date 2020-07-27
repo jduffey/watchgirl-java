@@ -2,14 +2,14 @@ package watchgirl.devices;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import watchgirl.dataObjects.SignalOutput;
 import watchgirl.tools.HmacGenerator;
 import watchgirl.tools.TimeKeeper;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class SignalMakerTest {
 
@@ -69,5 +69,15 @@ public class SignalMakerTest {
         Assertions.assertEquals(
                 SignalOutput.WHITE,
                 underTest.generateSignal());
+    }
+
+    @Test
+    void generateSignal_throwsException_returnsErrorSignal() throws Exception {
+        doThrow(new Exception()).when(hmacGenerator).generateHmac(anyString(), anyString());
+
+        Assertions.assertEquals(
+                SignalOutput.SIGNAL_ERROR,
+                underTest.generateSignal()
+        );
     }
 }

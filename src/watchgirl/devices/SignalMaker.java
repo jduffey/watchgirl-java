@@ -17,10 +17,14 @@ public class SignalMaker {
         this.hmacGenerator = hmacGenerator;
     }
 
-    public SignalOutput generateSignal() throws Exception {
-        String hmac = getHmac();
+    public SignalOutput generateSignal() {
+        try {
+            String hmac = getHmac();
 
-        return HmacColorMapper.getSignal(hmac);
+            return HmacColorMapper.getSignal(hmac);
+        } catch (Exception e) {
+            return SignalOutput.SIGNAL_ERROR;
+        }
     }
 
     private String getHmac() throws Exception {

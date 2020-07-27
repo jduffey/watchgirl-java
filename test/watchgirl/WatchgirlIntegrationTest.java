@@ -20,7 +20,7 @@ public class WatchgirlIntegrationTest {
     private AnalyzedPhotograph analyzedPhoto;
 
     @BeforeEach
-    void e2e_soFar() throws Exception {
+    void e2e_soFar() {
         EntropyTools entropyTools = new EntropyTools();
         SecretKeeper secretKeeper = SecretKeeper.getInstance();
         EquipmentProvisioner equipmentProvisioner = new EquipmentProvisioner(entropyTools, secretKeeper);
