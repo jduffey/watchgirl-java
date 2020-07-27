@@ -2,5 +2,6 @@ package watchgirl.dataObjects;
 
 public enum PhotographStatus {
     OK,
-    BAD
+    BAD,
+    ANALYZE_ERROR,
 }

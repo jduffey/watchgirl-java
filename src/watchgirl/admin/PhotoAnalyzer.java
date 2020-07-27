@@ -19,13 +19,17 @@ public class PhotoAnalyzer {
         this.secretKeeper = secretKeeper;
     }
 
-    public AnalyzedPhotograph createAnalyzedPhotograph(Photograph photograph) throws Exception {
-        PhotographStatus status =
+    public AnalyzedPhotograph createAnalyzedPhotograph(Photograph photograph) {
+        try {
+            PhotographStatus status =
                 getExpectedSignal(photograph) == photograph.getSignal()
                 ? PhotographStatus.OK
                 : PhotographStatus.BAD;
 
-        return new AnalyzedPhotograph(photograph, status);
+            return new AnalyzedPhotograph(photograph, status);
+        } catch (Exception e) {
+            return new AnalyzedPhotograph(photograph, PhotographStatus.ANALYZE_ERROR);
+        }
     }
 
     private SignalOutput getExpectedSignal(Photograph photo) throws Exception {

@@ -11,8 +11,7 @@ import watchgirl.tools.HmacGenerator;
 
 import java.util.UUID;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class PhotoAnalyzerTest {
 
@@ -36,6 +35,8 @@ class PhotoAnalyzerTest {
         when(photograph.getSignal()).thenReturn(EXPECTED_SIGNAL);
 
         when(secretKeeper.getSecret(cameraId)).thenReturn(SECRET);
+
+        reset(hmacGenerator);
     }
 
     @Test
@@ -56,5 +57,14 @@ class PhotoAnalyzerTest {
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
         Assertions.assertEquals(PhotographStatus.BAD, actual.getStatus());
+    }
+
+    @Test
+    void createAnalyzedPhotograph_throwsException_marksPhotoStatusAsAnalyzeError() throws Exception {
+        doThrow(new Exception()).when(hmacGenerator).generateHmac(TIME, SECRET);
+
+        AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
+
+        Assertions.assertEquals(PhotographStatus.ANALYZE_ERROR, actual.getStatus());
     }
 }
