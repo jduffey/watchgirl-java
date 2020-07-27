@@ -13,13 +13,13 @@ public class AnalyzedPhotographTest {
     private static final SignalOutput SIGNAL = SignalOutput.RED;
     private static final String TIME = "TIME";
     private AnalyzedPhotograph underTest;
-    private PhotographStatus status;
+    private AnalyzedPhotographStatus status;
     private Photograph photo;
 
     @BeforeEach
     void setup() {
         photo = new Photograph(CAMERA_ID, PHOTO_ID, TIME, SIGNAL);
-        status = PhotographStatus.OK;
+        status = AnalyzedPhotographStatus.OK;
 
         underTest = new AnalyzedPhotograph(photo, status);
     }

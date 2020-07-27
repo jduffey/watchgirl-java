@@ -5,14 +5,14 @@ import java.util.UUID;
 public class AnalyzedPhotograph {
 
     private final Photograph photograph;
-    private final PhotographStatus status;
+    private final AnalyzedPhotographStatus status;
 
-    public AnalyzedPhotograph(Photograph photo, PhotographStatus status) {
+    public AnalyzedPhotograph(Photograph photo, AnalyzedPhotographStatus status) {
         this.photograph = photo;
         this.status = status;
     }
 
-    public PhotographStatus getStatus() {
+    public AnalyzedPhotographStatus getStatus() {
         return status;
     }
 

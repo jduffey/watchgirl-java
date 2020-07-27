@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import watchgirl.dataObjects.AnalyzedPhotograph;
 import watchgirl.dataObjects.Photograph;
-import watchgirl.dataObjects.PhotographStatus;
+import watchgirl.dataObjects.AnalyzedPhotographStatus;
 import watchgirl.dataObjects.SignalOutput;
 import watchgirl.tools.HmacGenerator;
 
@@ -45,7 +45,7 @@ class PhotoAnalyzerTest {
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(PhotographStatus.OK, actual.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.OK, actual.getStatus());
     }
 
     @Test
@@ -54,7 +54,7 @@ class PhotoAnalyzerTest {
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(PhotographStatus.BAD, actual.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.BAD, actual.getStatus());
     }
 
     @Test
@@ -65,7 +65,7 @@ class PhotoAnalyzerTest {
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(PhotographStatus.SIGNAL_ERROR, actual.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.SIGNAL_ERROR, actual.getStatus());
     }
 
     @Test
@@ -74,6 +74,6 @@ class PhotoAnalyzerTest {
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(PhotographStatus.ANALYZE_ERROR, actual.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.ANALYZE_ERROR, actual.getStatus());
     }
 }

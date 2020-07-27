@@ -2,7 +2,7 @@ package watchgirl.admin;
 
 import watchgirl.dataObjects.AnalyzedPhotograph;
 import watchgirl.dataObjects.Photograph;
-import watchgirl.dataObjects.PhotographStatus;
+import watchgirl.dataObjects.AnalyzedPhotographStatus;
 import watchgirl.dataObjects.SignalOutput;
 import watchgirl.tools.HmacColorMapper;
 import watchgirl.tools.HmacGenerator;
@@ -21,18 +21,18 @@ public class PhotoAnalyzer {
 
     public AnalyzedPhotograph createAnalyzedPhotograph(Photograph photograph) {
         if (SignalOutput.SIGNAL_ERROR == photograph.getSignal()) {
-            return new AnalyzedPhotograph(photograph, PhotographStatus.SIGNAL_ERROR);
+            return new AnalyzedPhotograph(photograph, AnalyzedPhotographStatus.SIGNAL_ERROR);
         }
 
         try {
-            PhotographStatus status =
+            AnalyzedPhotographStatus status =
                 getExpectedSignal(photograph) == photograph.getSignal()
-                ? PhotographStatus.OK
-                : PhotographStatus.BAD;
+                ? AnalyzedPhotographStatus.OK
+                : AnalyzedPhotographStatus.BAD;
 
             return new AnalyzedPhotograph(photograph, status);
         } catch (Exception e) {
-            return new AnalyzedPhotograph(photograph, PhotographStatus.ANALYZE_ERROR);
+            return new AnalyzedPhotograph(photograph, AnalyzedPhotographStatus.ANALYZE_ERROR);
         }
     }
 
