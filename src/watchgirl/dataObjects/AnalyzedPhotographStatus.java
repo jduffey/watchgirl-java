@@ -1,8 +1,8 @@
 package watchgirl.dataObjects;
 
 public enum AnalyzedPhotographStatus {
-    OK,
-    BAD,
+    MATCH,
+    NO_MATCH,
     SIGNAL_ERROR,
     ANALYZE_ERROR,
 }

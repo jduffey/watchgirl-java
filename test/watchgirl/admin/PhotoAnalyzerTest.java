@@ -45,7 +45,7 @@ class PhotoAnalyzerTest {
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(AnalyzedPhotographStatus.OK, actual.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.MATCH, actual.getStatus());
     }
 
     @Test
@@ -54,7 +54,7 @@ class PhotoAnalyzerTest {
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);
 
-        Assertions.assertEquals(AnalyzedPhotographStatus.BAD, actual.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.NO_MATCH, actual.getStatus());
     }
 
     @Test

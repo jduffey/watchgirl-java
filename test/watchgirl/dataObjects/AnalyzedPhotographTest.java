@@ -19,7 +19,7 @@ public class AnalyzedPhotographTest {
     @BeforeEach
     void setup() {
         photo = new Photograph(CAMERA_ID, PHOTO_ID, TIME, SIGNAL);
-        status = AnalyzedPhotographStatus.OK;
+        status = AnalyzedPhotographStatus.MATCH;
 
         underTest = new AnalyzedPhotograph(photo, status);
     }

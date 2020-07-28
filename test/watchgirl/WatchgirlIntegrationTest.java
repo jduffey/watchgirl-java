@@ -49,6 +49,6 @@ public class WatchgirlIntegrationTest {
 
     @Test
     void analyzedPhotographStatusIsOk() {
-        Assertions.assertEquals(AnalyzedPhotographStatus.OK, analyzedPhoto.getStatus());
+        Assertions.assertEquals(AnalyzedPhotographStatus.MATCH, analyzedPhoto.getStatus());
     }
 }

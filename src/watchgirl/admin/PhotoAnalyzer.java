@@ -27,8 +27,8 @@ public class PhotoAnalyzer {
         try {
             AnalyzedPhotographStatus status =
                 getExpectedSignal(photograph) == photograph.getSignal()
-                ? AnalyzedPhotographStatus.OK
-                : AnalyzedPhotographStatus.BAD;
+                ? AnalyzedPhotographStatus.MATCH
+                : AnalyzedPhotographStatus.NO_MATCH;
 
             return new AnalyzedPhotograph(photograph, status);
         } catch (Exception e) {
