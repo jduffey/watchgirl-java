@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import static org.mockito.Mockito.*;
 
-public class EquipmentProvisionerTest {
+public class DevicesProvisionerTest {
 
     @Test
     void createCameraSignalMakerPair() {
@@ -23,7 +23,7 @@ public class EquipmentProvisionerTest {
         when(entropyTools.generateUuid()).thenReturn(cameraUuid);
         when(entropyTools.generateSecretKey()).thenReturn(secret);
 
-        EquipmentProvisioner underTest = new EquipmentProvisioner(entropyTools, secretKeeper);
+        DevicesProvisioner underTest = new DevicesProvisioner(entropyTools, secretKeeper);
 
         CameraSignalMakerPair actual = underTest.createCameraSignalMakerPair();
 

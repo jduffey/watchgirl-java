@@ -3,7 +3,7 @@ package watchgirl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import watchgirl.admin.EquipmentProvisioner;
+import watchgirl.admin.DevicesProvisioner;
 import watchgirl.admin.PhotoAnalyzer;
 import watchgirl.admin.SecretKeeper;
 import watchgirl.dataObjects.*;
@@ -23,10 +23,10 @@ public class WatchgirlIntegrationTest {
     void e2e_soFar() {
         EntropyTools entropyTools = new EntropyTools();
         SecretKeeper secretKeeper = SecretKeeper.getInstance();
-        EquipmentProvisioner equipmentProvisioner = new EquipmentProvisioner(entropyTools, secretKeeper);
+        DevicesProvisioner devicesProvisioner = new DevicesProvisioner(entropyTools, secretKeeper);
         PhotoAnalyzer photoAnalyzer = new PhotoAnalyzer(new HmacGenerator(), secretKeeper);
 
-        CameraSignalMakerPair cameraSignalMakerPair = equipmentProvisioner.createCameraSignalMakerPair();
+        CameraSignalMakerPair cameraSignalMakerPair = devicesProvisioner.createCameraSignalMakerPair();
 
         Camera camera = cameraSignalMakerPair.getCamera();
         SignalMaker signalMaker = cameraSignalMakerPair.getSignalMaker();

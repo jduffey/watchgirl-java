@@ -9,12 +9,12 @@ import watchgirl.tools.TimeKeeper;
 
 import java.util.UUID;
 
-public class EquipmentProvisioner {
+public class DevicesProvisioner {
 
     private final EntropyTools entropyTools;
     private final SecretKeeper secretKeeper;
 
-    public EquipmentProvisioner(EntropyTools entropyTools, SecretKeeper secretKeeper) {
+    public DevicesProvisioner(EntropyTools entropyTools, SecretKeeper secretKeeper) {
         this.entropyTools = entropyTools;
         this.secretKeeper = secretKeeper;
     }

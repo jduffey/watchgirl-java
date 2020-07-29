@@ -1,6 +1,6 @@
 package watchgirl;
 
-import watchgirl.admin.EquipmentProvisioner;
+import watchgirl.admin.DevicesProvisioner;
 import watchgirl.admin.PhotoAnalyzer;
 import watchgirl.admin.SecretKeeper;
 import watchgirl.dataObjects.AnalyzedPhotograph;
@@ -59,8 +59,8 @@ public class Application {
     private static CameraSignalMakerPair createCameraAndSignalMaker() {
         EntropyTools entropyTools = new EntropyTools();
         SecretKeeper secretKeeper = SecretKeeper.getInstance();
-        EquipmentProvisioner equipmentProvisioner = new EquipmentProvisioner(entropyTools, secretKeeper);
+        DevicesProvisioner devicesProvisioner = new DevicesProvisioner(entropyTools, secretKeeper);
 
-        return equipmentProvisioner.createCameraSignalMakerPair();
+        return devicesProvisioner.createCameraSignalMakerPair();
     }
 }
