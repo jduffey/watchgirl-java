@@ -38,11 +38,11 @@ public class Application {
         analyzePhotos(photoAnalyzer, photos);
     }
 
-    private static void analyzePhotos(PhotoAnalyzer photoAnalyzer, List<Photograph> photos) throws Exception {
+    private static void analyzePhotos(PhotoAnalyzer photoAnalyzer, List<Photograph> photos) {
         System.out.println("\n*** Analyzing Photos ***");
         for(Photograph photo : photos) {
             AnalyzedPhotograph analyzedPhotograph = photoAnalyzer.createAnalyzedPhotograph(photo);
-            System.out.println(String.format("%s - %s", analyzedPhotograph.getStatus(), analyzedPhotograph.getPhotoId()));
+            System.out.printf("%s - %s%n", analyzedPhotograph.getStatus(), analyzedPhotograph.getPhotoId());
         }
     }
 
@@ -50,7 +50,7 @@ public class Application {
         System.out.println("\n*** Creating Signals ***");
         for (int i = 0; i < NUM_PHOTOS_TO_TAKE; i++) {
             SignalOutput emittedSignal = signalMaker.generateSignal();
-            System.out.println(String.format("Time: %s, Signal: %s", timeKeeper.getCurrentUnixTime(), emittedSignal));
+            System.out.printf("Time: %s, Signal: %s%n", timeKeeper.getCurrentUnixTime(), emittedSignal);
             camera.takePhoto(emittedSignal);
             Thread.sleep(SECONDS_BETWEEN_PHOTOS * 1000);
         }

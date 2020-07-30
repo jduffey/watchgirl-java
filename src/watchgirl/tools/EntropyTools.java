@@ -18,6 +18,6 @@ public class EntropyTools {
             sb.append(Integer.toHexString(r.nextInt()));
         }
 
-        return sb.toString().substring(0, lengthOfKey);
+        return sb.substring(0, lengthOfKey);
     }
 }
