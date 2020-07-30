@@ -24,14 +24,13 @@ public class Application {
         System.out.println("*** START ***");
 
         CameraSignalMakerPair pair = createCameraAndSignalMaker();
+
         Camera camera = pair.getCamera();
         SignalMaker signalMaker = pair.getSignalMaker();
-        TimeKeeper timeKeeper = new TimeKeeper();
-        HmacGenerator hmacGenerator = new HmacGenerator();
-        SecretKeeper secretKeeper = SecretKeeper.getInstance();
-        PhotoAnalyzer photoAnalyzer = new PhotoAnalyzer(hmacGenerator, secretKeeper);
 
-        takePhotos(camera, signalMaker, timeKeeper);
+        PhotoAnalyzer photoAnalyzer = createPhotoAnalyzer();
+
+        takePhotos(camera, signalMaker);
 
         List<Photograph> photos = camera.getStoredPhotos();
 
@@ -40,14 +39,17 @@ public class Application {
 
     private static void analyzePhotos(PhotoAnalyzer photoAnalyzer, List<Photograph> photos) {
         System.out.println("\n*** Analyzing Photos ***");
+
         for(Photograph photo : photos) {
             AnalyzedPhotograph analyzedPhotograph = photoAnalyzer.createAnalyzedPhotograph(photo);
             System.out.printf("%s - %s%n", analyzedPhotograph.getStatus(), analyzedPhotograph.getPhotoId());
         }
     }
 
-    private static void takePhotos(Camera camera, SignalMaker signalMaker, TimeKeeper timeKeeper) throws Exception {
+    private static void takePhotos(Camera camera, SignalMaker signalMaker) throws Exception {
         System.out.println("\n*** Creating Signals ***");
+        TimeKeeper timeKeeper = new TimeKeeper();
+
         for (int i = 0; i < NUM_PHOTOS_TO_TAKE; i++) {
             SignalOutput emittedSignal = signalMaker.generateSignal();
             System.out.printf("Time: %s, Signal: %s%n", timeKeeper.getCurrentUnixTime(), emittedSignal);
@@ -62,5 +64,12 @@ public class Application {
         DevicesProvisioner devicesProvisioner = new DevicesProvisioner(entropyTools, secretKeeper);
 
         return devicesProvisioner.createCameraSignalMakerPair();
+    }
+
+    private static PhotoAnalyzer createPhotoAnalyzer() {
+        HmacGenerator hmacGenerator = new HmacGenerator();
+        SecretKeeper secretKeeper = SecretKeeper.getInstance();
+
+        return new PhotoAnalyzer(hmacGenerator, secretKeeper);
     }
 }
