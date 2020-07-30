@@ -40,7 +40,7 @@ class PhotoAnalyzerTest {
     }
 
     @Test
-    void createAnalyzedPhotograph_statusOk() throws Exception {
+    void createAnalyzedPhotograph_statusMatch() throws Exception {
         when(hmacGenerator.generateHmac(TIME, SECRET)).thenReturn(HMAC_FIRST_63_DIGITS + "0");
 
         AnalyzedPhotograph actual = underTest.createAnalyzedPhotograph(photograph);

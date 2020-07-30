@@ -11,8 +11,6 @@ import watchgirl.devices.SignalMaker;
 import watchgirl.tools.EntropyTools;
 import watchgirl.tools.HmacGenerator;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -36,9 +34,7 @@ public class WatchgirlIntegrationTest {
         SignalOutput signalOutput = signalMaker.generateSignal();
         camera.takePhoto(signalOutput);
 
-        List<Photograph> photographs = camera.getStoredPhotos();
-
-        photo = photographs.stream().findFirst().orElse(null);
+        photo = camera.getStoredPhotos().stream().findFirst().orElse(null);
 
         assertNotNull(photo);
         analyzedPhoto = photoAnalyzer.createAnalyzedPhotograph(photo);
@@ -50,7 +46,7 @@ public class WatchgirlIntegrationTest {
     }
 
     @Test
-    void analyzedPhotographStatusIsOk() {
+    void analyzedPhotographStatusIsMatch() {
         assertEquals(AnalyzedPhotographStatus.MATCH, analyzedPhoto.getStatus());
     }
 }
