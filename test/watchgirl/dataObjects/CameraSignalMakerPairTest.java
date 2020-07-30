@@ -1,6 +1,5 @@
 package watchgirl.dataObjects;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import watchgirl.devices.Camera;
@@ -10,6 +9,8 @@ import watchgirl.tools.HmacGenerator;
 import watchgirl.tools.TimeKeeper;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class CameraSignalMakerPairTest {
 
@@ -32,11 +33,11 @@ public class CameraSignalMakerPairTest {
 
     @Test
     void getCamera() {
-        Assertions.assertSame(camera, cameraSignalMakerPair.getCamera());
+        assertSame(camera, cameraSignalMakerPair.getCamera());
     }
 
     @Test
     void getSignalMaker() {
-        Assertions.assertSame(signalMaker, cameraSignalMakerPair.getSignalMaker());
+        assertSame(signalMaker, cameraSignalMakerPair.getSignalMaker());
     }
 }

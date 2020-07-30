@@ -1,6 +1,5 @@
 package watchgirl.devices;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import watchgirl.dataObjects.Photograph;
@@ -11,6 +10,7 @@ import watchgirl.tools.TimeKeeper;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -41,21 +41,21 @@ public class CameraTest {
 
     @Test
     void takePhoto_storesCameraIdWithPhoto() {
-        Assertions.assertEquals(CAMERA_ID, photo.getCameraId());
+        assertEquals(CAMERA_ID, photo.getCameraId());
     }
 
     @Test
     void takePhoto_storesPhotoIdWithPhoto() {
-        Assertions.assertEquals(PHOTO_ID, photo.getPhotoId());
+        assertEquals(PHOTO_ID, photo.getPhotoId());
     }
 
     @Test
     void takePhoto_storesTimeWithPhoto() {
-        Assertions.assertEquals(TIME, photo.getTime());
+        assertEquals(TIME, photo.getTime());
     }
 
     @Test
     void takePhoto_storesReceivedSignalWithPhoto() {
-        Assertions.assertEquals(SIGNAL_OUTPUT, photo.getSignal());
+        assertEquals(SIGNAL_OUTPUT, photo.getSignal());
     }
 }

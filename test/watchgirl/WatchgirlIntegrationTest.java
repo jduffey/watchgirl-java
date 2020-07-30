@@ -1,6 +1,5 @@
 package watchgirl;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import watchgirl.admin.DevicesProvisioner;
@@ -13,6 +12,9 @@ import watchgirl.tools.EntropyTools;
 import watchgirl.tools.HmacGenerator;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class WatchgirlIntegrationTest {
 
@@ -38,17 +40,17 @@ public class WatchgirlIntegrationTest {
 
         photo = photographs.stream().findFirst().orElse(null);
 
-        assert photo != null;
+        assertNotNull(photo);
         analyzedPhoto = photoAnalyzer.createAnalyzedPhotograph(photo);
     }
 
     @Test
     void capturedPhotograph_isSamePhotographInAnalyzedPhotograph() {
-        Assertions.assertEquals(photo, analyzedPhoto.getPhoto());
+        assertEquals(photo, analyzedPhoto.getPhoto());
     }
 
     @Test
     void analyzedPhotographStatusIsOk() {
-        Assertions.assertEquals(AnalyzedPhotographStatus.MATCH, analyzedPhoto.getStatus());
+        assertEquals(AnalyzedPhotographStatus.MATCH, analyzedPhoto.getStatus());
     }
 }

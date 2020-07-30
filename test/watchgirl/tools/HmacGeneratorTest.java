@@ -1,7 +1,8 @@
 package watchgirl.tools;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HmacGeneratorTest {
 
@@ -11,6 +12,6 @@ public class HmacGeneratorTest {
 
         String actual = underTest.generateHmac("MESSAGE", "KEY");
 
-        Assertions.assertTrue(actual.matches("(?i)[A-F0-9]{64}"));
+        assertTrue(actual.matches("(?i)[a-f0-9]{64}"));
     }
 }

@@ -1,10 +1,12 @@
 package watchgirl.admin;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 class SecretKeeperTest {
 
@@ -19,7 +21,7 @@ class SecretKeeperTest {
     void secretKeeperIsSingleton() {
         SecretKeeper secretKeeper = SecretKeeper.getInstance();
 
-        Assertions.assertSame(underTest, secretKeeper);
+        assertSame(underTest, secretKeeper);
     }
 
     @Test
@@ -29,6 +31,6 @@ class SecretKeeperTest {
 
         underTest.registerCameraSecret(cameraId, secret);
 
-        Assertions.assertEquals(secret, underTest.getSecret(cameraId));
+        assertEquals(secret, underTest.getSecret(cameraId));
     }
 }

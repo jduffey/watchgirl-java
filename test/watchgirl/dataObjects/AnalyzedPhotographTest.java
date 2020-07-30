@@ -1,10 +1,11 @@
 package watchgirl.dataObjects;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnalyzedPhotographTest {
 
@@ -26,31 +27,31 @@ public class AnalyzedPhotographTest {
 
     @Test
     void getPhoto() {
-        Assertions.assertEquals(photo, underTest.getPhoto());
+        assertEquals(photo, underTest.getPhoto());
     }
 
     @Test
     void getStatus() {
-        Assertions.assertEquals(status, underTest.getStatus());
+        assertEquals(status, underTest.getStatus());
     }
 
     @Test
     void getCameraId() {
-        Assertions.assertEquals(CAMERA_ID, underTest.getCameraId());
+        assertEquals(CAMERA_ID, underTest.getCameraId());
     }
 
     @Test
     void getPhotoId() {
-        Assertions.assertEquals(PHOTO_ID, underTest.getPhotoId());
+        assertEquals(PHOTO_ID, underTest.getPhotoId());
     }
 
     @Test
     void getTime() {
-        Assertions.assertEquals(TIME, underTest.getTime());
+        assertEquals(TIME, underTest.getTime());
     }
 
     @Test
     void getSignal() {
-        Assertions.assertEquals(SIGNAL, underTest.getSignal());
+        assertEquals(SIGNAL, underTest.getSignal());
     }
 }

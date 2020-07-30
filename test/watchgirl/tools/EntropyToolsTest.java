@@ -1,10 +1,12 @@
 package watchgirl.tools;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EntropyToolsTest {
 
@@ -19,7 +21,7 @@ public class EntropyToolsTest {
     void generateUuid() {
         UUID actual = underTest.generateUuid();
 
-        Assertions.assertNotNull(actual);
+        assertNotNull(actual);
     }
 
     @Test
@@ -27,6 +29,6 @@ public class EntropyToolsTest {
         String actual = underTest.generateSecretKey();
 
         String expectedRegex = "[a-f0-9]{64}";
-        Assertions.assertTrue(actual.matches(expectedRegex));
+        assertTrue(actual.matches(expectedRegex));
     }
 }

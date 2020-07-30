@@ -1,6 +1,5 @@
 package watchgirl.devices;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +8,7 @@ import watchgirl.dataObjects.SignalOutput;
 import watchgirl.tools.HmacGenerator;
 import watchgirl.tools.TimeKeeper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class SignalMakerTest {
@@ -33,9 +33,7 @@ public class SignalMakerTest {
         when(hmacGenerator.generateHmac(CURRENT_TIME, SECRET))
                 .thenReturn(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(
-                SignalOutput.RED,
-                underTest.generateSignal());
+        assertEquals(SignalOutput.RED, underTest.generateSignal());
     }
 
     @ParameterizedTest
@@ -44,9 +42,7 @@ public class SignalMakerTest {
         when(hmacGenerator.generateHmac(CURRENT_TIME, SECRET))
                 .thenReturn(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(
-                SignalOutput.GREEN,
-                underTest.generateSignal());
+        assertEquals(SignalOutput.GREEN, underTest.generateSignal());
     }
 
     @ParameterizedTest
@@ -55,9 +51,7 @@ public class SignalMakerTest {
         when(hmacGenerator.generateHmac(CURRENT_TIME, SECRET))
                 .thenReturn(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(
-                SignalOutput.BLUE,
-                underTest.generateSignal());
+        assertEquals(SignalOutput.BLUE, underTest.generateSignal());
     }
 
     @ParameterizedTest
@@ -66,18 +60,13 @@ public class SignalMakerTest {
         when(hmacGenerator.generateHmac(CURRENT_TIME, SECRET))
                 .thenReturn(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(
-                SignalOutput.WHITE,
-                underTest.generateSignal());
+        assertEquals(SignalOutput.WHITE, underTest.generateSignal());
     }
 
     @Test
     void generateSignal_throwsException_returnsErrorSignal() throws Exception {
         doThrow(new Exception()).when(hmacGenerator).generateHmac(anyString(), anyString());
 
-        Assertions.assertEquals(
-                SignalOutput.SIGNAL_ERROR,
-                underTest.generateSignal()
-        );
+        assertEquals(SignalOutput.SIGNAL_ERROR, underTest.generateSignal());
     }
 }

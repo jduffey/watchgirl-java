@@ -1,6 +1,5 @@
 package watchgirl.admin;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import watchgirl.dataObjects.CameraSignalMakerPair;
 import watchgirl.devices.Camera;
@@ -9,6 +8,7 @@ import watchgirl.tools.EntropyTools;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class DevicesProvisionerTest {
@@ -30,8 +30,8 @@ public class DevicesProvisionerTest {
         Camera camera = actual.getCamera();
         SignalMaker signalMaker = actual.getSignalMaker();
 
-        Assertions.assertNotNull(camera);
-        Assertions.assertNotNull(signalMaker);
+        assertNotNull(camera);
+        assertNotNull(signalMaker);
         verify(secretKeeper).registerCameraSecret(eq(cameraUuid), eq(secret));
         verifyNoMoreInteractions(secretKeeper);
     }

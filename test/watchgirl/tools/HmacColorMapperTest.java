@@ -1,9 +1,10 @@
 package watchgirl.tools;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import watchgirl.dataObjects.SignalOutput;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HmacColorMapperTest {
 
@@ -15,7 +16,7 @@ public class HmacColorMapperTest {
     void getSignal_givenInputMod4Equals0_returnsRed(String value) {
         SignalOutput actual = HmacColorMapper.getSignal(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(SignalOutput.RED, actual);
+        assertEquals(SignalOutput.RED, actual);
     }
 
     @ParameterizedTest
@@ -23,7 +24,7 @@ public class HmacColorMapperTest {
     void getSignal_givenInputMod4Equals0_returnsGreen(String value) {
         SignalOutput actual = HmacColorMapper.getSignal(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(SignalOutput.GREEN, actual);
+        assertEquals(SignalOutput.GREEN, actual);
     }
 
     @ParameterizedTest
@@ -31,7 +32,7 @@ public class HmacColorMapperTest {
     void getSignal_givenInputMod4Equals0_returnsBlue(String value) {
         SignalOutput actual = HmacColorMapper.getSignal(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(SignalOutput.BLUE, actual);
+        assertEquals(SignalOutput.BLUE, actual);
     }
 
     @ParameterizedTest
@@ -39,6 +40,6 @@ public class HmacColorMapperTest {
     void getSignal_givenInputMod4Equals0_returnsWhite(String value) {
         SignalOutput actual = HmacColorMapper.getSignal(DIGEST_FIRST_63_DIGITS + value);
 
-        Assertions.assertEquals(SignalOutput.WHITE, actual);
+        assertEquals(SignalOutput.WHITE, actual);
     }
 }
