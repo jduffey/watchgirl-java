@@ -41,8 +41,8 @@ public class Application {
         System.out.println("\n*** Analyzing Photos ***");
 
         for(Photograph photo : photos) {
-            AnalyzedPhotograph analyzedPhotograph = photoAnalyzer.createAnalyzedPhotograph(photo);
-            System.out.printf("%s - %s%n", analyzedPhotograph.getStatus(), analyzedPhotograph.getPhotoId());
+            AnalyzedPhotograph ap = photoAnalyzer.createAnalyzedPhotograph(photo);
+            System.out.printf("%s: t=%s, id=%s%n", ap.getStatus(), ap.getTime(), ap.getPhotoId());
         }
     }
 
