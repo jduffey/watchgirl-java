@@ -11,12 +11,12 @@ import watchgirl.devices.SignalMaker;
 import watchgirl.tools.EntropyTools;
 import watchgirl.tools.HmacGenerator;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class WatchgirlIntegrationTest {
 
-    private Photograph photo;
     private AnalyzedPhotograph analyzedPhoto;
 
     @BeforeEach
@@ -34,15 +34,12 @@ public class WatchgirlIntegrationTest {
         SignalOutput signalOutput = signalMaker.generateSignal();
         camera.takePhoto(signalOutput);
 
-        photo = camera.getStoredPhotos().stream().findFirst().orElse(null);
+        Photograph photo = Objects.requireNonNull(camera.getStoredPhotos().stream()
+                .findFirst()
+                .orElse(null),
+                "Camera did not have a Photograph");
 
-        assertNotNull(photo);
         analyzedPhoto = photoAnalyzer.createAnalyzedPhotograph(photo);
-    }
-
-    @Test
-    void capturedPhotograph_isSamePhotographInAnalyzedPhotograph() {
-        assertEquals(photo, analyzedPhoto.getPhoto());
     }
 
     @Test

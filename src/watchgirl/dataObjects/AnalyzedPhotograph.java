@@ -16,8 +16,8 @@ public class AnalyzedPhotograph {
         return status;
     }
 
-    // Public for testing
-    public Photograph getPhoto() {
+    // Package-private for testing
+    Photograph getPhoto() {
         return photograph;
     }
 
