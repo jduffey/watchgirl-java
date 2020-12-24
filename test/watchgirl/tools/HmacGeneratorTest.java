@@ -17,7 +17,7 @@ public class HmacGeneratorTest {
     }
 
     @Test
-    void generateHmac_is64bytesOfLowerCaseHexString() throws Exception {
+    void generateHmac_is64charsOfLowerCaseHexString() throws Exception {
         String actual = underTest.generateHmac(MESSAGE, "KEY");
 
         assertTrue(actual.matches("[a-f0-9]{64}"));
